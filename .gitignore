@@ -1,0 +1,20 @@
+# Build artifacts
+_build/
+result
+*.exe
+
+# Generated outputs (regenerated from source)
+outputs/
+
+# Auto-provisioned Quarto extension copy (from nix develop when quarto is enabled)
+_extensions/tlang
+
+# Editor files
+*~
+.#*
+\#*#
+.merlin
+
+# OS files
+.DS_Store
+Thumbs.db

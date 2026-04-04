@@ -1,0 +1,16 @@
+[package]
+name = "my_package"
+version = "0.1.0"
+description = "brief description: what my_package does"
+authors = ["johngavin"]
+license = "EUPL-1.2"
+homepage = ""
+repository = ""
+
+[dependencies]
+# T packages this package depends on
+# Format: package = { git = "repository-url", tag = "version" }
+
+[t]
+# Minimum T language version required
+min_version = "0.5.0"
