@@ -39,21 +39,20 @@ p = pipeline {
     serializer = ^arrow
   )
 
-  -- Step 3: Final report
-  report = shn(
+  -- Step 3: Final report — R node reads Arrow summary and formats text
+  report = rn(
     command = <{
-      echo "=== my_t_project Pipeline Report ==="
-      echo ""
-      echo "Data: anonymized by DuckDB in --network=none OrbStack container"
-      echo "PHI removed: names, NHS numbers, DOB, full postcodes"
-      echo "Preserved: age bands, postcode areas, clinical values, lab comments"
-      echo ""
-      echo "=== Clinical Summary by Diagnosis ==="
-      cat "$T_NODE_clinical_summary/artifact"
-      echo ""
-      echo "=== Pipeline Complete ==="
+      cat("=== my_t_project Pipeline Report ===\n\n")
+      cat("Data: anonymized by DuckDB in --network=none OrbStack container\n")
+      cat("PHI removed: names, NHS numbers, DOB, full postcodes\n")
+      cat("Preserved: age bands, postcode areas, clinical values, lab comments\n\n")
+      cat("=== Clinical Summary by Diagnosis ===\n")
+      print(as.data.frame(clinical_summary))
+      cat("\n=== Pipeline Complete ===\n")
+      report <- clinical_summary
     }>,
-    serializer = ^text
+    deserializer = ^arrow,
+    serializer = ^arrow
   )
 }
 
