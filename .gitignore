@@ -1,10 +1,15 @@
 # Build artifacts
 _build/
+_pipeline/
+pipeline-output/
 result
 *.exe
 
 # Generated outputs (regenerated from source)
 outputs/
+
+# CONFIDENTIAL: raw patient data with PHI — NEVER commit
+data/confidential_patients.csv
 
 # Auto-provisioned Quarto extension copy (from nix develop when quarto is enabled)
 _extensions/tlang
