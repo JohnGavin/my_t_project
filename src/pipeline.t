@@ -10,7 +10,12 @@
 
 p = pipeline {
   -- Step 1: Read anonymized data (no PHI — safe for pipeline)
-  patients = read_csv("outputs/anonymized_patients.csv", separator = "|")
+  -- Serialize as Arrow so R can deserialize it
+  patients = node(
+    command = read_csv("outputs/anonymized_patients.csv", separator = "|"),
+    runtime = T,
+    serializer = ^arrow
+  )
 
   -- Step 2: R node — clinical summary by diagnosis
   clinical_summary = rn(
